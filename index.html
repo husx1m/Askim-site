@@ -1,8 +1,8 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Sana Bir Şey Soracağım ❤️</title>
 
@@ -11,33 +11,26 @@
   box-sizing: border-box;
 }
 
-html, body {
-  margin: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-
 body {
+  margin: 0;
+  min-height: 100vh;
   background: #11162d;
   color: white;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial, sans-serif;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .wrap {
-  width: min(92vw, 520px);
+  width: 92%;
+  max-width: 520px;
   text-align: center;
-  position: relative;
 }
 
 h1 {
   color: #ff4778;
-  font-size: clamp(30px, 9vw, 48px);
-  margin: 0 0 25px;
-  text-shadow: 0 0 16px rgba(255,79,120,.35);
+  font-size: 35px;
 }
 
 .photo {
@@ -46,82 +39,50 @@ h1 {
   height: 360px;
   object-fit: cover;
   border-radius: 20px;
-  margin: 15px auto 25px;
   display: block;
+  margin: 20px auto;
   box-shadow: 0 0 25px rgba(255,79,120,.4);
 }
 
 .music-btn {
-  margin-top: 5px;
-  padding: 14px 25px;
-  border: 0;
-  border-radius: 999px;
-  background: #ff3f68;
+  padding: 16px 28px;
+  border: none;
+  border-radius: 50px;
+  background: #ff4778;
   color: white;
-  font-size: 17px;
+  font-size: 18px;
   font-weight: bold;
-  cursor: pointer;
-}
-
-.question {
-  margin-top: 20px;
+  margin: 10px;
 }
 
 .yes {
   width: 100%;
   height: 150px;
-  border: 0;
+  border: none;
   border-radius: 18px;
   background: #20b84b;
-  color: #fff;
-  font-size: clamp(34px, 10vw, 56px);
-  font-weight: 700;
-  box-shadow: 0 10px 25px rgba(0,0,0,.25);
-  cursor: pointer;
+  color: white;
+  font-size: 45px;
+  font-weight: bold;
+  margin-top: 20px;
 }
 
 .no {
   position: fixed;
-  border: 0;
-  border-radius: 999px;
+  border: none;
+  border-radius: 50px;
   background: #ef3f55;
-  color: #fff;
-  font-weight: 700;
-  font-size: 16px;
-  padding: 8px 14px;
-  cursor: pointer;
-  z-index: 5;
-  transition: left .12s ease, top .12s ease;
-}
-
-.heart {
-  font-size: 70px;
-  animation: pulse 1s infinite;
-}
-
-.final {
-  margin-top: 18px;
-}
-
-.restart {
-  margin-top: 12px;
-  padding: 12px 22px;
-  border: 0;
-  border-radius: 12px;
-  background: #ff4778;
   color: white;
-  font-size: 17px;
-  cursor: pointer;
+  padding: 10px 18px;
+  font-weight: bold;
 }
 
 .hidden {
   display: none;
 }
 
-@keyframes pulse {
-  50% {
-    transform: scale(1.12);
-  }
+.heart {
+  font-size: 80px;
 }
 </style>
 </head>
@@ -130,22 +91,21 @@ h1 {
 
 <div class="wrap" id="main">
 
+  <h1>Beni affettin mi aşkım? ❤️</h1>
+
   <!-- FOTOĞRAF -->
-  <img class="photo" src="Sude.jpg" alt="Sude">
+  <img src="Sude.jpg" class="photo" alt="Sude">
 
   <!-- MÜZİK -->
   <button class="music-btn" id="musicBtn">
-    🎵 Müziği Aç
+    🎵 MÜZİĞİ AÇ
   </button>
 
   <audio id="music" loop>
-    <source src="Intizar-Nazar-Boncugum.mp3" type="audio/mpeg">
+    <source
+      src="https://husx1m.github.io/Askim-site/Intizar-Nazar-Boncugum.mp3"
+      type="audio/mpeg">
   </audio>
-
-  <!-- SORU -->
-  <h1 class="question" id="question">
-    Beni affettin mi aşkım? ❤️
-  </h1>
 
   <button class="yes" id="yes">
     EVET ❤️
@@ -153,13 +113,11 @@ h1 {
 
 </div>
 
-<!-- HAYIR BUTONU -->
 <button class="no" id="no">
   Hayır
 </button>
 
-<!-- SON EKRAN -->
-<div class="wrap final hidden" id="final">
+<div class="wrap hidden" id="final">
 
   <div class="heart">❤️</div>
 
@@ -170,39 +128,63 @@ h1 {
     İyi ki varsın, iyi ki benimsin. 🥹❤️
   </p>
 
-  <button class="restart" onclick="location.reload()">
-    Başa dön
-  </button>
-
 </div>
 
 <script>
 
-const no = document.getElementById("no");
-const yes = document.getElementById("yes");
-const main = document.getElementById("main");
-const final = document.getElementById("final");
-
 const music = document.getElementById("music");
 const musicBtn = document.getElementById("musicBtn");
 
-/* MÜZİĞİ AÇ / KAPAT */
-musicBtn.addEventListener("click", function () {
+musicBtn.addEventListener("click", async function() {
 
-  if (music.paused) {
-    music.play();
+  try {
 
-    musicBtn.innerHTML = "⏸️ Müziği Durdur";
-  } else {
-    music.pause();
+    if (music.paused) {
+      await music.play();
+      musicBtn.innerHTML = "⏸️ MÜZİĞİ DURDUR";
+    } else {
+      music.pause();
+      musicBtn.innerHTML = "🎵 MÜZİĞİ AÇ";
+    }
 
-    musicBtn.innerHTML = "🎵 Müziği Aç";
+  } catch (error) {
+
+    alert("Müzik yüklenemedi. Birkaç saniye bekleyip tekrar dene.");
+
   }
 
 });
 
-/* EVET'E BASINCA MÜZİK BAŞLASIN */
-yes.addEventListener("click", function () {
+
+const no = document.getElementById("no");
+
+function moveNo() {
+
+  const x = Math.random() *
+    (window.innerWidth - no.offsetWidth - 20) + 10;
+
+  const y = Math.random() *
+    (window.innerHeight - no.offsetHeight - 20) + 10;
+
+  no.style.left = x + "px";
+  no.style.top = y + "px";
+}
+
+no.addEventListener("touchstart", function(e) {
+  e.preventDefault();
+  moveNo();
+});
+
+no.addEventListener("mouseenter", moveNo);
+
+moveNo();
+
+
+const yes = document.getElementById("yes");
+const main = document.getElementById("main");
+const final = document.getElementById("final");
+
+yes.addEventListener("click", function() {
 
   music.play().catch(() => {});
 
@@ -211,39 +193,6 @@ yes.addEventListener("click", function () {
   final.classList.remove("hidden");
 
 });
-
-/* HAYIR BUTONU KAÇSIN */
-function moveNo() {
-
-  const padding = 20;
-
-  const maxX = window.innerWidth - no.offsetWidth - padding;
-  const maxY = window.innerHeight - no.offsetHeight - padding;
-
-  const x = Math.random() * maxX + padding;
-  const y = Math.random() * maxY + padding;
-
-  no.style.left = x + "px";
-  no.style.top = y + "px";
-}
-
-/* TELEFONDA DOKUNUNCA KAÇSIN */
-no.addEventListener("touchstart", function(e) {
-
-  e.preventDefault();
-  moveNo();
-
-});
-
-/* BİLGİSAYARDA ÜZERİNE GELİNCE KAÇSIN */
-no.addEventListener("mouseenter", function() {
-
-  moveNo();
-
-});
-
-/* SAYFA AÇILINCA HAYIR BUTONUNU YERLEŞTİR */
-moveNo();
 
 </script>
 
