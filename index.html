@@ -1,173 +1,220 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Sude ❤️</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Sana Bir Şey Soracağım ❤️</title>
 
 <style>
-* {
-    box-sizing: border-box;
+*{box-sizing:border-box}
+
+html,body{
+  margin:0;
+  width:100%;
+  height:100%;
+  overflow:hidden
 }
 
-html, body {
-    margin: 0;
-    width: 100%;
-    min-height: 100%;
-    font-family: Arial, Helvetica, sans-serif;
+body{
+  background:#11162d;
+  color:white;
+  font-family:Arial,Helvetica,sans-serif;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
-body {
-    background: linear-gradient(135deg, #120006, #3b0015, #16000b);
-    color: white;
-    overflow-x: hidden;
-    text-align: center;
+.wrap{
+  width:min(92vw,520px);
+  text-align:center;
+  position:relative
 }
 
-.container {
-    width: 100%;
-    max-width: 500px;
-    margin: auto;
-    padding: 35px 20px 50px;
-    position: relative;
-    z-index: 2;
+h1{
+  color:#ff4f78;
+  font-size:clamp(30px,9vw,48px);
+  margin:0 0 55px;
+  text-shadow:0 0 16px rgba(255,79,120,.35);
 }
 
-h1 {
-    font-size: 48px;
-    margin: 10px 0 5px;
-    color: #ffb6c9;
-    text-shadow: 0 0 20px rgba(255, 80, 130, .8);
+.yes{
+  width:100%;
+  height:150px;
+  border:0;
+  border-radius:18px;
+  background:#20b84b;
+  color:#fff;
+  font-size:clamp(34px,10vw,56px);
+  font-weight:700;
+  box-shadow:0 10px 25px rgba(0,0,0,.25);
+  cursor:pointer;
 }
 
-.subtitle {
-    font-size: 18px;
-    color: #ffdce5;
-    margin-bottom: 25px;
+.no{
+  position:fixed;
+  border:0;
+  border-radius:999px;
+  background:#ef3f55;
+  color:#fff;
+  font-weight:700;
+  font-size:16px;
+  padding:8px 14px;
+  cursor:pointer;
+  z-index:5;
+  transition:left .12s ease,top .12s ease;
 }
 
-.photo {
-    width: 100%;
-    max-width: 330px;
-    height: 430px;
-    object-fit: cover;
-    border-radius: 25px;
-    border: 3px solid rgba(255,255,255,.8);
-    box-shadow:
-        0 0 20px rgba(255,70,120,.6),
-        0 15px 40px rgba(0,0,0,.6);
+.heart{
+  font-size:70px;
+  animation:pulse 1s infinite
 }
 
-.message {
-    margin-top: 30px;
-    background: rgba(255,255,255,.08);
-    border: 1px solid rgba(255,255,255,.15);
-    border-radius: 22px;
-    padding: 25px 20px;
-    backdrop-filter: blur(10px);
+.final h1{
+  margin-bottom:18px
 }
 
-.message h2 {
-    color: #ffb3c7;
-    margin-top: 0;
-    font-size: 27px;
+.final p{
+  font-size:22px;
+  line-height:1.5;
+  margin:0
 }
 
-.message p {
-    font-size: 17px;
-    line-height: 1.7;
-    color: #fff1f5;
+.restart{
+  margin-top:28px;
+  padding:12px 22px;
+  border:0;
+  border-radius:12px;
+  font-size:17px
 }
 
-.music-button {
-    margin-top: 25px;
-    border: none;
-    border-radius: 50px;
-    padding: 15px 28px;
-    font-size: 17px;
-    font-weight: bold;
-    color: white;
-    background: linear-gradient(90deg, #ff174f, #ff4f81);
-    box-shadow: 0 0 20px rgba(255,40,90,.5);
-    cursor: pointer;
+@keyframes pulse{
+  50%{transform:scale(1.12)}
 }
 
-.music-button:active {
-    transform: scale(.95);
-}
-
-.heart {
-    position: fixed;
-    bottom: -30px;
-    font-size: 22px;
-    animation: fly 6s linear infinite;
-    opacity: .8;
-    z-index: 1;
-}
-
-@keyframes fly {
-    0% {
-        transform: translateY(0) scale(.8);
-        opacity: 0;
-    }
-
-    20% {
-        opacity: .8;
-    }
-
-    100% {
-        transform: translateY(-110vh) scale(1.4) rotate(20deg);
-        opacity: 0;
-    }
-}
-
-.footer {
-    margin-top: 30px;
-    color: #cda5b1;
-    font-size: 14px;
+.hidden{
+  display:none
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<div class="wrap" id="main">
 
-    <div style="font-size:45px;">❤️</div>
+  <h1 id="question">
+    Beni affettin mi aşkım? ❤️
+  </h1>
 
-    <h1>Sude</h1>
+  <button class="yes" id="yes">
+    Evet
+  </button>
 
-    <div class="subtitle">
-        Benim en güzel hikâyem...
-    </div>
+</div>
 
-    <img
-        src="Sude.jpg"
-        alt="Sude"
-        class="photo"
-    >
+<button class="no" id="no">
+  Hayır
+</button>
 
-    <div class="message">
+<div class="wrap final hidden" id="final">
 
-        <h2>Seni Çok Seviyorum ❤️</h2>
+  <div class="heart">
+    ❤️
+  </div>
 
-        <p>
-            Sude, hayatımda olduğun için kendimi çok şanslı hissediyorum.
-            Seninle geçirdiğim her an benim için çok değerli.
-            İyi ki varsın, iyi ki benimlesin.
-        </p>
+  <h1>
+    İşte bunu duymak istiyordum!
+  </h1>
 
-        <p>
-            Bazen kelimeler yetmiyor ama şunu bilmeni istiyorum:
-            <b>Seni her şeyden çok seviyorum. ❤️</b>
-        </p>
+  <p>
+    Seni çok seviyorum aşkım.<br>
+    İyi ki varsın, iyi ki benimlesin. 🥹❤️
+  </p>
 
-        <button class="music-button" onclick="toggleMusic()">
-            🎵 Müziği Başlat
-        </button>
+  <button class="restart" onclick="location.reload()">
+    Başa dön
+  </button>
 
-    </div>
+</div>
 
-    <div class="footer">
-        Sude ❤️ Sonsuza kadar
+<script>
+
+const no = document.getElementById('no');
+const yes = document.getElementById('yes');
+const main = document.getElementById('main');
+const final = document.getElementById('final');
+const question = document.getElementById('question');
+
+let attempts = 0;
+
+function moveNo(){
+
+  const pad = 12;
+
+  const w = no.offsetWidth;
+  const h = no.offsetHeight;
+
+  const x =
+    pad +
+    Math.random() *
+    Math.max(1, innerWidth - w - pad * 2);
+
+  const y =
+    pad +
+    Math.random() *
+    Math.max(1, innerHeight - h - pad * 2);
+
+  no.style.left = x + 'px';
+  no.style.top = y + 'px';
+
+  attempts++;
+
+  if(attempts === 2)
+    question.textContent = "Emin misin? 🥺";
+
+  if(attempts === 4)
+    question.textContent = "Lütfeeeen? 🥹❤️";
+
+  if(attempts === 7)
+    question.textContent = "Hayır diye bir seçenek yok ki 😭";
+}
+
+no.addEventListener('mouseenter', moveNo);
+
+no.addEventListener(
+  'touchstart',
+  e => {
+    e.preventDefault();
+    moveNo();
+  },
+  {passive:false}
+);
+
+no.addEventListener('click', moveNo);
+
+function placeNo(){
+
+  no.style.left =
+    (innerWidth - no.offsetWidth - 55) + 'px';
+
+  no.style.top =
+    (innerHeight / 2 + 75) + 'px';
+}
+
+addEventListener('resize', placeNo);
+
+placeNo();
+
+yes.addEventListener('click', ()=>{
+
+  main.classList.add('hidden');
+
+  no.classList.add('hidden');
+
+  final.classList.remove('hidden');
+
+});
+
+</script>
+
+</body>
+</html>
